@@ -1,0 +1,70 @@
+// hero
+@import 'variables';
+@import 'mixins';
+
+
+/* HERO BASE */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient($hero-overlay, $hero-overlay), $hero-image;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: $text;
+  padding: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+/* CONTENIDO */
+.hero-content {
+  max-width: 700px;
+}
+
+/* ELEMENTOS */
+.hero-title {
+  font-size: 3rem;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.hero-subtitle {
+  margin-top: 1rem;
+  color: $muted;
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-button {
+  margin-top: 2rem;
+  background: $primary;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* 🔥 ANIMACIÓN BASE */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔁 ANIMACIÓN ESCALONADA CON @for */
+$items: hero-title, hero-subtitle, hero-button;
+
+@for $i from 1 through length($items) {
+  .#{nth($items, $i)} {
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: $i * 0.2s;
+  }
+}
